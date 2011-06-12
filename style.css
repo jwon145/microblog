@@ -1,0 +1,50 @@
+@font-face
+{
+	font-family: "Aurulent";
+	src: url("../AurulentSans-Regular.otf");
+}
+body 
+{ 
+	padding: 20px; 
+	margin: 20px;
+	background: #1F1F1F; 
+	margin: 0 auto; 
+	width: 65%; 
+	font-family: "Aurulent",sans-serif;
+	line-height: 1.5;
+	color: #EEEEEE;
+	text-shadow: 0 1px 1px #000;
+}
+h1 {
+	border-bottom: 1px solid #2d2d2d;
+	font-size: 22px;
+	text-align: right;
+	padding-bottom: 5px;
+	margin: 0;
+}
+p
+{
+	border-bottom: 1px solid #2d2d2d;
+	padding: 10px;
+	margin: 0;
+	overflow: auto;
+	display: block;
+}
+p:hover 
+{ 
+	background: #171717;
+}
+time 
+{
+	display: block;
+	float: right;
+}
+a:hover
+{
+	text-decoration: underline;
+}	
+a
+{ 
+	color: #4F7BB8;
+	text-decoration: none;
+}
