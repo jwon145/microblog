@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 
 use CGI qw/:all/;
+use Tie::File;
 use Digest::SHA1 qw(sha1_hex);
 
 # to generate a password:
@@ -41,10 +42,22 @@ if (!-e $file) {
     close($fh);
 }
 
-if (param('pw') and param('text') and sha1_hex(param('pw')) eq $pw) {
-    open($fh, '>>', $file);
-    print $fh localtime(time) . "\t" . param('text') . "\n";
-    close($fh); 
+if (param('pw') and sha1_hex(param('pw')) eq $pw) {
+    if (param('post')) {
+        open($fh, '>>', $file);
+        print $fh localtime(time) . "\t" . param('post') . "\n";
+        close($fh); 
+    } elsif (param('rm')) {
+        if (param('rm') eq 'all') {
+            tie my @file, 'Tie::File', $file;
+            @file = ();
+            untie @file;
+        } elsif (param('rm') =~ /^\d+$/) {
+            tie my @file, 'Tie::File', $file;
+            splice @file, param('rm')-1, 1;
+            untie @file;
+        }
+    }
 }
 
 open($fh, '<', $file);
